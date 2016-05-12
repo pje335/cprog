@@ -12,24 +12,17 @@ int main(void){
     }
   }
 
-  /*Calculating the rows*/
+  /*Calculating the rows and the coulums*/
   printf("\n" );
   for(x=0; x<N;x++){
     row[x] = 0;
     for(y=0; y<N;y++){
       row[x] += l[x][y];
-    }
-
-  }
-
-  /*Calculating the coulums*/
-  for(x=0; x<N;x++){
-    column[x] = 0;
-    for(y=0; y<N;y++){
       column[x] += l[y][x];
     }
 
   }
+
 
 
   printf("total or rows: %d %d %d %d %d \n",row[0],row[1],row[2],row[3],row[4] );
