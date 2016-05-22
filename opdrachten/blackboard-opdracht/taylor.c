@@ -3,30 +3,29 @@
 
 //calculation the facultie.
 double faculteit(double tal){
-  double x = (2*tal + 1);
-  double fact = x;
-  for (double i = (x-1); i >0; i--) {
+  double z = (2*tal + 1);
+  double fact = z;
+  for (double i = (z-1); i >0; i--) {
     fact *= i;
   }
-  printf("N factulteit: %lf\n",fact );
 return fact;
 }
 
 //calculation the power
-double macht(double x, double n){
+double macht(double x, int n){
   double y = (2*n + 1);
   return pow(x,y);
 }
 
 // calcultion the value for that n
-double sommatie( double x,double n){
+double sommatie( double x,int n){
   double sum;
   sum = pow(-1,n) * macht(x,n) / faculteit(n);
   return sum;
 }
 
 //calculation the total value of the calculation tot n.
-double total(int n, int x){
+double total(int n, double x){
   double sinus = 0;
   for(double i = 0; i < n;i++){
     sinus += sommatie(x,i);
@@ -39,18 +38,18 @@ double total(int n, int x){
 
 int main(void){
 char stop = 'n';
-int x ,n = 5;
+double x ,n = 5;
 
 //opening the file to write the values.
 FILE *fp;
 fp = fopen("taylor.txt","a+");
-
+fprintf(fp,"X \t \t  \t Taylor \t  \t \t sin(x) \t  \t \t verschil \n");
 
 printf("Dit programma rekent sin(x) uit m.b.v de Taylorreeks.\n\n");
 
 while(stop != 'j'){
 printf("voer x in radialen (tussen -pi tot + pi) in: ");
-scanf("%d",&x );
+scanf("%lf",&x );
 printf("\n" );
 
 //printing the output of the calculations and the diffrence.
@@ -65,7 +64,7 @@ scanf(" %c", &stop);
 printf("\n" );
 
 // aditing the values in the textfile.
-fprintf(fp,"%d ",x);
+fprintf(fp,"%f \t \t %.19lf \t \t %.19lf \t \t %.19e\n",x,total(n,x),sin(x), total(n,x) - sin(x));
 }
 
 //closing the file and program
