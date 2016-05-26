@@ -5,7 +5,7 @@
 double faculteit(double tal){
   double z = (2*tal + 1);
   double fact = z;
-  for (double i = (z-1); i >0; i--) {
+  for (double i = (z-1); i > 1; i--) {
     fact *= i;
   }
 return fact;
@@ -13,32 +13,28 @@ return fact;
 
 //calculation the power
 double macht(double x, int n){
-  double y = (2*n + 1);
+  int y = (2*n + 1);
   return pow(x,y);
 }
 
-// calcultion the value for that n
-double sommatie( double x,int n){
-  double sum;
-  sum = pow(-1,n) * macht(x,n) / faculteit(n);
-  return sum;
-}
+
 
 //calculation the total value of the calculation tot n.
 double total(int n, double x){
   double sinus = 0;
   for(double i = 0; i < n;i++){
-    sinus += sommatie(x,i);
+    sinus += pow(-1,i) * macht(x,i) / faculteit(i);
   }
   return sinus;
 }
 
-
+//-----------------------
 
 
 int main(void){
 char stop = 'n';
-double x ,n = 5;
+double x;
+const int n = 5;
 
 //opening the file to write the values.
 FILE *fp;
